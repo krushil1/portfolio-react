@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import "./Navbar.css";
+
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("#home"); // Ensure this is set to the href value of 'Home'
-
+  const [activeLink, setActiveLink] = useState("#home");
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -13,7 +14,7 @@ function Navbar() {
         <div className="container mx-auto px-4 py-4">
           <nav className="flex justify-between items-center">
             <div className="text-lg font-semibold">
-            <button className="text-gray text-3xl">
+              <button className="text-gray text-3xl">
                 Krush<span className="text-orange">i</span>l
               </button>
             </div>
@@ -28,7 +29,7 @@ function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`font-medium text-gray cursor-pointer ${
+                  className={`font-medium text-gray text-shadow cursor-pointer ${
                     activeLink === link.href ? "border-b-2 border-orange" : ""
                   }`}
                   onClick={() => setActiveLink(link.href)}
@@ -37,7 +38,7 @@ function Navbar() {
                 </a>
               ))}
             </div>
-            <div className="fixed top-4 right-4 z-40 md:hidden">
+            <div className="fixed top-5 right-4 z-40 md:hidden">
               <button
                 onClick={toggleMenu}
                 className="flex flex-col items-center justify-center relative w-6 h-6"
@@ -90,7 +91,7 @@ function Navbar() {
                   setActiveLink(link.href);
                   toggleMenu();
                 }}
-                className={`block py-2 px-6 font-medium text-gray hover:bg-gray hover:border-l-4 hover:border-orange ${
+                className={`block py-2 px-6 font-medium text-gray hover:border-l-4 hover:border-orange ${
                   activeLink === link.href ? "border-l-4 border-orange" : ""
                 }`}
               >

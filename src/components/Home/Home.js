@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Picture from "../assets/pic.jpeg";
+import Picture from "../../assets/pic.jpeg";
+import "./Home.css";
 
 function Home() {
   const [arrowUp, setArrowUp] = useState(true);
@@ -19,18 +20,26 @@ function Home() {
     }
   };
 
+  // Add a useEffect to add the 'active' class when the component mounts
+  useEffect(() => {
+    const homeElement = document.getElementById("home");
+    if (homeElement) {
+      homeElement.classList.add("active");
+    }
+  }, []);
+
   return (
-    <div className="container mx-auto" id="home">
+    <div className="container mx-auto fade-in" id="home">
       <div className="sm:flex justify-center items-center min-h-screen bg-white-100 px-6 md:px-24 py-20">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-left">
             <h1 className="mt-12 text-4xl sm:text-6xl text-gray font-bold leading-tight mb-4">
               Hi,
               <br />
-              I'm <span className="text-orange text-shadow-sm">Krushil</span>
+              I'm <span className="text-orange text-shadow">Krushil</span>
             </h1>
             <h2 className="text-1xl sm:text-2xl font-medium text-gray">
-              Breaking & building tech sometimes
+              Building & breaking tech
             </h2>
           </div>
           <div>
@@ -42,10 +51,10 @@ function Home() {
             </button>
           </div>
           <div className="flex space-x-6 sm:mt-5">
-            <a href="https://linkedin.com">
+            <a href="https://www.linkedin.com/in/krushil-amrutiya/" target="_blank" rel="noreferrer">
               <i className="bx bxl-linkedin text-gray text-2xl hover:text-lightgray"></i>
             </a>
-            <a href="https://github.com">
+            <a href="https://github.com/krushil1" target="_blank" rel="noreferrer">
               <i className="bx bxl-github text-gray text-2xl hover:text-lightgray"></i>
             </a>
           </div>
@@ -54,7 +63,7 @@ function Home() {
           <img
             src={Picture}
             alt="Krushil's img"
-            className="ml-16 w-3/4 h-auto mt-12 sm:w-auto sm:h-auto lg:w-96 lg:h-auto object-cover object-center rounded-md shadow-lg"
+            className="ml-auto w-2/4 h-auto mt-12 sm:w-auto sm:h-auto lg:w-96 lg:h-auto object-cover object-center rounded-md shadow-lg"
           />
           <i
             className={`text-orange mt-10 text-2xl bx bxs-chevron-down sm:hidden ${
