@@ -20,7 +20,6 @@ function Home() {
     }
   };
 
-  // Add a useEffect to add the 'active' class when the component mounts
   useEffect(() => {
     const homeElement = document.getElementById("home");
     if (homeElement) {
@@ -38,9 +37,13 @@ function Home() {
               <br />
               I'm <span className="text-orange text-shadow">Krushil</span>
             </h1>
-            <h2 className="text-1xl sm:text-2xl font-medium text-gray">
-              Building & breaking tech
-            </h2>
+            <div className="flex items-center">
+              <h2 className="text-1xl sm:text-2xl font-medium text-gray">
+                Building & breaking tech
+              </h2>
+              <i class='bx bx-code-alt text-gray text-xl ml-2'></i>
+            </div>
+            
           </div>
           <div>
             <button

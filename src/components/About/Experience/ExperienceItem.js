@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ExperienceItem.css";
-import experiences from "./ExperienceData"; 
+import experiences from "./ExperienceData";
+import ExperienceModal from "./ExperienceModal";
 
 function ExperienceItem() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalExperience, setModalExperience] = useState(null);
+
+  const openModal = (experience) => {
+    setModalExperience(experience);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalExperience(null);
+    setIsModalOpen(false);
+  };
+
   const isSingleExperience = experiences.length === 1;
 
   return (
@@ -16,7 +30,8 @@ function ExperienceItem() {
           {experiences.map((experience) => (
             <div
               key={experience.id}
-              className="shadow-effect rounded-lg flex items-center p-2 sm:p-2 transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
+              className="cursor-pointer shadow-effect rounded-lg flex items-center p-2 sm:p-2 transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
+              onClick={() => openModal(experience)} 
             >
               <div className="border-r-2 border-gray">
                 <img
@@ -34,16 +49,20 @@ function ExperienceItem() {
                 </p>
                 <p className="text-gray">{experience.location}</p>
                 <p className="text-gray">{experience.date}</p>
-                <div>
-                  <a href={experience.link} target="_blank" rel="noreferrer">
-                    <p className="text-gray font-semibold">More info</p>
-                  </a>
+                <div onClick={() => openModal(experience)}>
+                  <p className="text-gray font-semibold">More info</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      {modalExperience && (
+        <ExperienceModal
+          experience={modalExperience}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }
