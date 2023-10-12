@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ExperienceItem.css";
-import experiences from "./ExperienceData";
+import experiences from "../../Data/ExperienceData";
 import ExperienceModal from "./ExperienceModal";
 
 function ExperienceItem() {

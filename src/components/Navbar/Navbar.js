@@ -44,19 +44,19 @@ function Navbar() {
                 className="flex flex-col items-center justify-center relative w-6 h-6"
               >
                 <span
-                  className={`absolute w-5 h-0.5 bg-gray transition-all duration-300 ${
+                  className={`absolute w-5 h-0.5 bg-gray rounded-sm transition-all duration-300 ${
                     menuOpen
                       ? "transform rotate-45"
                       : "transform -translate-y-1.5"
                   }`}
                 ></span>
                 <span
-                  className={`absolute w-5 h-0.5 bg-gray transition-opacity duration-300 ${
+                  className={`absolute w-5 h-0.5 bg-gray rounded-sm transition-opacity duration-300 ${
                     menuOpen ? "opacity-0" : ""
                   }`}
                 ></span>
                 <span
-                  className={`absolute w-5 h-0.5 bg-gray transition-all duration-300 ${
+                  className={`absolute w-5 h-0.5 bg-gray rounded-sm transition-all duration-300 ${
                     menuOpen
                       ? "transform -rotate-45"
                       : "transform translate-y-1.5"
@@ -74,7 +74,7 @@ function Navbar() {
             onClick={toggleMenu}
           ></div>
           <div className="absolute top-0 right-0 h-screen w-64 bg-white transform transition-transform ease-in-out duration-300 translate-x-0 z-20 shadow-lg">
-            <div className="pt-8 pb-4 px-6 border-b border-gray mb-4">
+            <div className="pt-8 pb-4 px-6 mb-5 mt-4">
               <span className="text-xl font-semibold text-gray"></span>
             </div>
             {[

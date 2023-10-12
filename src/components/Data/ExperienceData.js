@@ -1,4 +1,4 @@
-import Logo from "../Experience/ExperienceAssets/vf-small-image.avif";
+import Logo from "../../assets/vf-small-image.avif"
 
 const experiences = [
   {
@@ -14,7 +14,7 @@ const experiences = [
       "<i class='bx bxl-nodejs'></i>",
       "<i class='bx bxl-typescript'></i>",
       "<i class='bx bxl-git'></i>",
-      "<i class='bx bxl-git-compare'></i>",
+      "<i class='bx bx-git-compare'></i>",
       "<i class='bx bxl-visual-studio' ></i>",
       "<i class='bx bxs-terminal' ></i>",
     ],
