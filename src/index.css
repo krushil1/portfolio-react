@@ -12,7 +12,8 @@ body {
   font-family: "Poppins", sans-serif;
 }
 @keyframes bounce-up-down {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -22,4 +23,12 @@ body {
 
 .animate-bounce-up-down {
   animation: bounce-up-down 1s ease-in-out infinite;
+}
+
+.blur-sm {
+  backdrop-filter: blur(100px);
+}
+
+.modal-content {
+  backdrop-filter: none;
 }

@@ -1,0 +1,12 @@
+.fade-in {
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+}
+
+.fade-in.active {
+  opacity: 1;
+}
+
+.text-shadow {
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
+}

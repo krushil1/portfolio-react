@@ -1,9 +1,9 @@
-import Navbar from "./Navbar";
-import Home from "./Home";
-import About from "./About";
-import Expertise from "./Expertise";
-import MyProjects from "./MyProjects";
-import Contact from "./Contact";
+import Navbar from "./Navbar/Navbar";
+import Home from "./Home/Home";
+import About from "./About/About";
+import Expertise from "./Expertise/Expertise";
+import MyProjects from "./MyProjects/MyProjects";
+import Contact from "./Contact/Contact";
 
 export default function Index() {
   return (

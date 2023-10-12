@@ -12,6 +12,8 @@ module.exports = {
       gray: "#646161",
       white: "#ffffff",
       lightgray: "#888888",
+      red: "#ff0000",
+      slate: "rgb(241,245, 249)",
     },
     extend: {
       textShadow: {
