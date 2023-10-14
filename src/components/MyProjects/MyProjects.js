@@ -56,7 +56,7 @@ function MyProjects() {
                 rel="noreferrer"
                 className="mt-2"
               >
-                <i class="bx bxl-github cursor-pointer text-gray text-4xl hover:text-lightgray"></i>
+                <i className="bx bxl-github cursor-pointer text-gray text-4xl hover:text-lightgray"></i>
               </div>
             </div>
 

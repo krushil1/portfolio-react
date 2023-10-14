@@ -10,6 +10,7 @@ module.exports = {
       current: "currentColor",
       orange: "#f55c32",
       gray: "#646161",
+      darkgray: "#383838",
       white: "#ffffff",
       lightgray: "#888888",
       red: "#ff0000",

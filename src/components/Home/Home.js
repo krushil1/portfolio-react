@@ -41,7 +41,7 @@ function Home() {
               <p className="text-1xl sm:text-2xl font-medium text-gray">
                 Building & breaking tech
               </p>
-              <i class="bx bx-code-alt text-gray text-xl ml-2"></i>
+              <i className="bx bx-code-alt text-gray text-xl ml-2"></i>
             </div>
             <button
               onClick={scrollToContact}
