@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
@@ -10,6 +10,7 @@ module.exports = {
       current: "currentColor",
       orange: "#f55c32",
       gray: "#646161",
+      darkgray: "#383838",
       white: "#ffffff",
       lightgray: "#888888",
       red: "#ff0000",
@@ -27,12 +28,12 @@ module.exports = {
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {
-          'text-shadow': (value) => ({
+          "text-shadow": (value) => ({
             textShadow: value,
           }),
         },
-        { values: theme('textShadow') }
-      )
+        { values: theme("textShadow") }
+      );
     }),
   ],
 };

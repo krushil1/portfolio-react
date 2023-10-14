@@ -4,6 +4,7 @@ import About from "./About/About";
 import Expertise from "./Expertise/Expertise";
 import MyProjects from "./MyProjects/MyProjects";
 import Contact from "./Contact/Contact";
+import Footer from "./Footer/Footer";
 
 export default function Index() {
   return (
@@ -14,6 +15,7 @@ export default function Index() {
       <Expertise />
       <MyProjects />
       <Contact />
+      <Footer />
     </>
   );
 }

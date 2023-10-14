@@ -18,7 +18,7 @@ function Expertise() {
         <div className="flex flex-col sm:flex-row mt-12 sm:mt-32">
           <div className="w-full sm:w-1/2 pr-0 sm:pr-4 mb-8 sm:mb-0">
             <div className="justify-start mb-4 text-gray font-medium">
-              <p class="text-sm sm:text-base">Learning one thing at a time.</p>
+              <p className="text-sm sm:text-base">Learning one thing at a time.</p>
               <div className="flex flex-col">
                 <p className="text-sm sm:text-base text-gray mt-4 sm:mt-8">
                   "The biggest asset in the world is your mindset"
