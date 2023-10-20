@@ -8,13 +8,15 @@ import {
 
 import Index from "./components";
 import Schedule from "./components/Schedule";
+import Aviation from "./Pages/Aviation"
 
 function App() {
   return (
-    <Router className="mx-auto">
+    <Router className="container mx-auto">
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/schedule" element={<Schedule />} />
+        <Route path="/aviation" element={<Aviation />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
