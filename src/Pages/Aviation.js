@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
 import client from "../client";
+import Grid from "@mui/material/Grid";
 
 function Aviation() {
   const [imagedata, setImagedata] = useState([]);
 
   useEffect(() => {
-
-    // fetch data from sanity
+    // Fetch data from sanity
     client
       .fetch(
         `*[_type == "images"] {
             Title,
             image {
                 asset-> {
-                    url
+                    url,
+                    metadata {
+                      dimensions
+                    }
                 },
             }
         }`
@@ -34,32 +37,46 @@ function Aviation() {
     }
   };
 
-  // Define the CSS grid style based on the number of columns
-  const gridStyle = {
-    gridTemplateColumns: `repeat(${calculateColumns()}, 1fr)`,
-    gap: "1rem",
-  };
-
   return (
     <div className="container mx-auto">
-      <div className="grid" style={gridStyle}>
-        {imagedata.map((image, index) => (
-          <div key={index} className="relative mb-2">
+      <Grid container spacing={2}>
+        {imagedata.map((image, index) => {
+          const { width, height } = image.image.asset.metadata.dimensions;
+          const maxWidth = 300; // Adjust the maximum width as needed
+          const maxHeight = 400; // Adjust the maximum height as needed
 
-            <img
-              src={image.image.asset.url}
-              alt={image.Title}
-              className="w-full object-cover aspect-none h-auto"
-            />
+          const scaleFactor = Math.min(maxWidth / width, maxHeight / height);
+          const scaledWidth = width * scaleFactor;
+          const scaledHeight = height * scaleFactor;
 
-            <div className="absolute top-0 left-0 bg-black bg-opacity-50 py-2 px-4">
-              <h1 className="text-white text-lg font-bold text-left">
-                {image.Title}
-              </h1>
-            </div>
-          </div>
-        ))}
-      </div>
+          return (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <div
+                className="relative mb-2"
+                style={{
+                  gridColumn: `span ${Math.ceil(maxWidth / scaledWidth)}`,
+                  gridRow: `span ${Math.ceil(maxHeight / scaledHeight)}`,
+                }}
+              >
+                <img
+                  src={image.image.asset.url}
+                  alt={image.Title}
+                  style={{
+                    width: `${scaledWidth}px`,
+                    height: `${scaledHeight}px`,
+                  }}
+                  className="w-full object-cover aspect-none h-auto"
+                />
+                <div className="absolute top-0 left-0 bg-black bg-opacity-50 py-2 px-4">
+                  <h1 className="text-white text-lg font-bold text-left">
+                    {image.Title}
+                  </h1>
+                </div>
+              </div>
+            </Grid>
+          );
+        })}
+      </Grid>
     </div>
   );
 }

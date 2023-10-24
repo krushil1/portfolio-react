@@ -50,14 +50,14 @@ function MyProjects() {
               <div className="text-orange font-semibold text-xl">
                 View more projects on Github!
               </div>
-              <div
+              <a
                 href="https://github.com/krushil1"
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2"
               >
                 <i className="bx bxl-github cursor-pointer text-gray text-4xl hover:text-lightgray"></i>
-              </div>
+              </a>
             </div>
 
             <div>
