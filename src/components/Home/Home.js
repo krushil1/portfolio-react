@@ -1,8 +1,49 @@
 import React, { useEffect, useState } from "react";
 import Picture from "../../assets/pic.jpeg";
+import client from "../../client";
 import "./Home.css";
 
 function Home() {
+  const [imagedata, setImagedata] = useState([]);
+  const [error, setError] = useState(false);
+  const [profileImage, setProfileImage] = useState(""); // New state variable
+
+  useEffect(() => {
+    // clear the cache
+  }, []);
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "profile-image"] {
+          Title,
+          image {
+              asset-> {
+                  url,
+                  metadata {
+                    dimensions
+                  }
+              },
+          }
+      }`
+      )
+      .then((data) => {
+        if (data.length > 0) {
+          setProfileImage(data[0].image.asset.url);
+        }
+      })
+      // .then((data) => {
+      //   setImagedata(data);
+      //   console.log(data);
+      //   if (data.length === 0) {
+      //     setError(true);
+      //   }
+      // })
+      .catch(() => {
+        setError(true);
+      });
+  }, []);
+
   const [arrowUp, setArrowUp] = useState(true);
 
   useEffect(() => {
@@ -70,7 +111,7 @@ function Home() {
         </div>
         <div className="flex flex-col justify-center items-center">
           <img
-            src={Picture}
+            src={profileImage}
             alt="Krushil's img"
             className="ml-auto w-2/3 h-auto mt-5 sm:w-auto sm:h-auto lg:w-96 lg:h-auto object-cover object-center rounded-md shadow-lg"
           />
