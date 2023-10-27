@@ -8,7 +8,7 @@ import {
 
 import Index from "./components";
 import Schedule from "./components/Schedule";
-import Aviation from "./Pages/Aviation"
+import AviationPage from "./Pages/Aviation/index"
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/schedule" element={<Schedule />} />
-        <Route path="/aviation" element={<Aviation />} />
+        <Route path="/aviation" element={<AviationPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
