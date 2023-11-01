@@ -14,9 +14,9 @@ function Navbar() {
         <div className="container mx-auto px-4 py-4">
           <nav className="flex justify-between items-center">
             <div className="text-lg font-semibold">
-              <button className="text-gray text-3xl">
+              <a className="text-gray text-3xl" href="/">
                 Krush<span className="text-orange">i</span>l
-              </button>
+              </a>
             </div>
             <div className="hidden md:flex space-x-12">
               {[
