@@ -1,9 +1,37 @@
 import React, { useEffect, useState } from "react";
 import Picture from "../../assets/pic.jpeg";
+import client from "../../client";
 import "./Home.css";
 
 function Home() {
+  const [imagedata, setImagedata] = useState([]);
+  const [error, setError] = useState(false);
+  const [profileImage, setProfileImage] = useState("");
   const [arrowUp, setArrowUp] = useState(true);
+
+  useEffect(() => {
+    // Fetch profile image
+    client
+      .fetch(
+        `*[_type == "profile-image"] {
+          image {
+            asset-> {
+              url
+            }
+          }
+        }`
+      )
+      .then((data) => {
+        if (data.length > 0) {
+          setProfileImage(data[0].image.asset.url);
+        } else {
+          setError(true);
+        }
+      })
+      .catch(() => {
+        setError(true);
+      });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +54,9 @@ function Home() {
       homeElement.classList.add("active");
     }
   }, []);
+
+  // Generate alt text based on error state
+  const altText = error ? "Error fetching image" : "Krushil's img";
 
   return (
     <div className="container mx-auto fade-in" id="home">
@@ -70,8 +101,8 @@ function Home() {
         </div>
         <div className="flex flex-col justify-center items-center">
           <img
-            src={Picture}
-            alt="Krushil's img"
+            src={profileImage}
+            alt={altText}
             className="ml-auto w-2/3 h-auto mt-5 sm:w-auto sm:h-auto lg:w-96 lg:h-auto object-cover object-center rounded-md shadow-lg"
           />
           <i

@@ -22,6 +22,18 @@ function About() {
               for innovation into both the tech & aviation landscapes.
             </p>
           </div>
+
+          <div className="transform transition-transform duration-300 ease-in-out hover:-translate-y-2">
+            <a
+              className="mt-4 flex items-center shadow-2xl p-3 rounded-md"
+              href="/aviation"
+            >
+              <p className="text-md text-gray font-medium">
+                View my aviation shots
+              </p>
+              <i class="ml-2 text-3xl bx bxs-plane-take-off text-orange"></i>
+            </a>
+          </div>
         </div>
 
         <div className="flex items-center text-orange font-semibold mt-8">
@@ -34,7 +46,6 @@ function About() {
         <div className="mt-11 w-6/12 md:w-3/12 ml-auto md:mt-0">
           <img src={Mello} alt="Mello" className="w-full md:w-auto" />
         </div>
-
       </div>
     </div>
   );
