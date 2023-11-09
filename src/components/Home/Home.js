@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Picture from "../../assets/pic.jpeg";
 import client from "../../client";
 import "./Home.css";
 
@@ -61,7 +60,7 @@ function Home() {
   return (
     <div className="container mx-auto fade-in" id="home">
       <div className="sm:flex justify-center items-center min-h-screen bg-white-100 px-6 md:px-24 py-20">
-        <div className="max-w-4xl w-full space-y-12">
+        <div className="max-w-4xl w-9/12 space-y-12">
           <div className="text-left">
             <h1 className="text-4xl sm:text-6xl text-gray font-bold leading-tight mb-4">
               Hi,

@@ -117,7 +117,7 @@ function Contact() {
                   onChange={handleInputChange}
                   rows="6"
                   className="shadow-effect bg-gray-50 text-gray text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
-                  placeholder="Drop me a message..."
+                  placeholder="Drop me a hey...!!!"
                   required
                 ></textarea>
               </div>

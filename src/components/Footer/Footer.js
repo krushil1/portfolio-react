@@ -11,7 +11,7 @@ function Footer() {
           </a>
         </div>
         <div className="font-semibold text-sm mt-2">Crafted with <i className="text-orange bx bxs-heart"></i> by Krushil</div>
-        <div className="font-semibold text-sm mt-1">Don't hesitate to reach out!</div>
+        <div className="font-semibold text-sm mt-1">Feel free to reach out!</div>
       </div>
     </footer>
   );

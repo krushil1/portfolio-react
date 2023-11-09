@@ -25,10 +25,10 @@ function About() {
 
           <div className="transform transition-transform duration-300 ease-in-out hover:-translate-y-2">
             <a
-              className="mt-4 flex items-center shadow-2xl p-3 rounded-md"
+              className="mt-4 flex items-center shadow-2xl p-2 rounded-md"
               href="/aviation"
             >
-              <p className="text-md text-gray font-medium">
+              <p className="text-xs text-gray font-semibold">
                 View my aviation shots
               </p>
               <i class="ml-2 text-3xl bx bxs-plane-take-off text-orange"></i>

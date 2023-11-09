@@ -40,10 +40,9 @@
   padding: 10px;
 }
 
-/* Mobile-responsive styles */
 @media (max-width: 767px) {
   .masonry-grid {
-    column-count: 1; /* Change to 1 column for small screens */
+    column-count: 1; 
   }
 }
 
