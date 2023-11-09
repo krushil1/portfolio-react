@@ -7,8 +7,10 @@ import {
 } from "react-router-dom";
 
 import Index from "./components";
-import Schedule from "./components/Schedule";
-import AviationPage from "./Pages/Aviation/index"
+import Aviation from "./Pages/Aviation/index"
+import Schedule from "./Pages/Schedule/Schedule";
+import Resume from "./Pages/ResumePage/Resume";
+
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/schedule" element={<Schedule />} />
-        <Route path="/aviation" element={<AviationPage />} />
+        <Route path="/aviation" element={<Aviation />} />
+        <Route path="/resume" element={<Resume />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
