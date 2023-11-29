@@ -3,13 +3,11 @@ import client from "../../client";
 import "./Home.css";
 
 function Home() {
-  const [imagedata, setImagedata] = useState([]);
   const [error, setError] = useState(false);
   const [profileImage, setProfileImage] = useState("");
   const [arrowUp, setArrowUp] = useState(true);
 
   useEffect(() => {
-    // Fetch profile image
     client
       .fetch(
         `*[_type == "profile-image"] {

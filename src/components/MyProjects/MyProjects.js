@@ -1,16 +1,42 @@
-import React, { useState } from "react";
-import projects from "../Data/ProjectData";
+import React, { useEffect, useState } from "react";
 import Picture from "../../assets/work.png";
 import "./MyProjects.css";
+import client from "../../client";
 
 function MyProjects() {
   const [showModal, setShowModal] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
 
+  const [project, setProject] = useState([]);
+  const [error, setError] = useState(false);
+
   const handleViewMore = (project) => {
     setCurrentProject(project);
     setShowModal(true);
   };
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "projects"] {
+          Project_Name,
+          Project_Link,
+          Project_Link_Icon,
+          Description,
+          Sub_Description,
+          Icons_For_Tech_Used
+        }`
+      )
+      .then((data) => {
+        setProject(data);
+        if (data.length === 0) {
+          setError(true);
+        }
+      })
+      .catch(() => {
+        setError(true);
+      });
+  }, []);
 
   return (
     <div className="shadow-md">
@@ -21,23 +47,29 @@ function MyProjects() {
               My Projects
             </div>
             <div className="text-gray mt-6 text-md sm:text-xl font-medium">
-              My top 3 all time favorite projects i've crafted!
+              My top 3 all-time favorite projects I've crafted!
             </div>
 
+            {project.length === 0 && (
+              <div className="text-orange mt-4 text-md font-bold">
+                My top 3 projects are currently unavailable. I'm working on restoring them soon :)
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-5 sm:mt-16">
-              {projects.map((project) => (
+              {project.map((projectItem, index) => (
                 <div
-                  key={project.id}
+                  key={index}
                   className="p-5 sm:p-10 rounded-md shadow-effect"
                 >
                   <div className="text-xl font-semibold mb-2 text-orange">
-                    {project.name}
+                    {projectItem.Project_Name}
                   </div>
                   <div className="text-sm sm:text-[15px] text-gray mb-4">
-                    {project.mini_desc}
+                    {projectItem.Sub_Description}
                   </div>
                   <button
-                    onClick={() => handleViewMore(project)}
+                    onClick={() => handleViewMore(projectItem)}
                     className="text-gray font-semibold cursor-pointer hover:text-lightgray"
                   >
                     View More
@@ -74,11 +106,21 @@ function MyProjects() {
                 <div className="modal-content shadow-effect bg-white p-10 sm:p-20 rounded-md relative flex flex-col items-center justify-center">
                   <div className="flex flex-col items-center justify-center text-center">
                     <p className="text-2xl mt-3 text-orange font-semibold">
-                      {currentProject.name}
+                      {currentProject.Project_Name}
                     </p>
 
-                    <div className="md:w-3/2 sm:w-96 text-md mt-2 text-gray font-medium">
-                      <p>{currentProject.full_desc}</p>
+                    <div className="text-md font-bold text-gray hover:text-lightgray">
+                      <a
+                        href={currentProject.Project_Link}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        View on Github
+                      </a>
+                    </div>
+
+                    <div className="md:w-3/2 sm:w-96 text-md mt-4 text-gray font-medium">
+                      {currentProject.Description}
                     </div>
 
                     <p className="text-lg text-gray mt-4 font-semibold">
@@ -86,13 +128,16 @@ function MyProjects() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <hr className="w-full max-w-lg rounded-full border-gray" />
-                      {currentProject.technologies.map((tech, index) => (
-                        <div
-                          key={index}
-                          className="text-orange text-3xl"
-                          dangerouslySetInnerHTML={{ __html: tech }}
-                        ></div>
-                      ))}
+                      {currentProject &&
+                        currentProject.Icons_For_Tech_Used.map(
+                          (tech, index) => (
+                            <div
+                              key={index}
+                              className="text-orange text-3xl"
+                              dangerouslySetInnerHTML={{ __html: tech }}
+                            ></div>
+                          )
+                        )}
                     </div>
 
                     <button

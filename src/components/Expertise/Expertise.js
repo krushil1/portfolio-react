@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import client from "../../client";
 import Picture from "./../../assets/skills.png";
-import expertise from "../Data/ExpertiseData";
 import "./Expertise.css";
 
 function Expertise() {
-  const { technologies } = expertise[0];
+  const [icons, setIcons] = useState([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    client
+      .fetch(
+        `*[_type == "skill-icons"] {
+          Title,
+        }`
+      )
+      .then((data) => {
+        setIcons(data);
+        if (data.length === 0) {
+          setError(true);
+        }
+      })
+      .catch(() => {
+        setError(true);
+      });
+  }, []);
 
   return (
     <div className="container mx-auto" id="expertise">
@@ -18,24 +37,34 @@ function Expertise() {
         <div className="flex flex-col sm:flex-row mt-12 sm:mt-32">
           <div className="w-full sm:w-1/2 pr-0 sm:pr-4 mb-8 sm:mb-0">
             <div className="justify-start mb-4 text-gray font-medium">
-              <p className="text-sm sm:text-base">Learning one thing at a time.</p>
+              <p className="text-sm sm:text-base">
+                Learning one thing at a time.
+              </p>
               <div className="flex flex-col">
                 <p className="text-sm sm:text-base text-gray mt-4 sm:mt-8">
                   "The biggest asset in the world is your mindset"
                 </p>
-                <p className="text-sm sm:text-base font-semibold ml-4">~Gary Vaynerchuk</p>
+                <p className="text-sm sm:text-base font-semibold ml-4">
+                  ~Gary Vaynerchuk
+                </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 p-2">
-              {technologies.map((icon, index) => (
-                <div
-                  key={index}
-                  className="flex cursor-pointer justify-center items-center w-12 h-12 rounded-md text-orange text-4xl shadow-effect transform transition-transform duration-300 hover:-translate-y-1"
-                  dangerouslySetInnerHTML={{ __html: icon }}
-                />
-              ))}
-            </div>
+            {error ? (
+              <div className="text-orange text-xs font-bold mb-8">
+                Icons currently unavailable. I'm working on restoring them soon :)
+              </div>
+            ) : (
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 p-2">
+                {icons.map((icon, index) => (
+                  <div
+                    key={index}
+                    className="flex cursor-pointer justify-center items-center w-10 h-10 md:w-12 md:h-12 rounded-md text-orange text-2xl md:text-4xl shadow-effect transform transition-transform duration-300 hover:-translate-y-1"
+                    dangerouslySetInnerHTML={{ __html: icon.Title }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="w-full sm:w-1/2">
