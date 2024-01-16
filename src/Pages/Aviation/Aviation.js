@@ -47,14 +47,14 @@ function Aviation() {
   }
 
   return (
-    <div className="container mx-auto masonry-grid mt-4">
+    <div className="container mx-auto masonry-grid md:mt-4">
       {imagedata.map((image, index) => {
         return (
           <div className="masonry-item" key={index}>
-            <img src={image.image.asset.url} alt={image.Title} />
+            <img src={image.image.asset.url} alt={image.Title} loading="lazy" />
             <div className="masonry-overlay">
               <div className="masonry-text">
-                <h1 className="text-lg font-bold">{image.Title}</h1>
+                <h1 className="text-xs md:text-lg lg:text-lg font-bold">{image.Title}</h1>
               </div>
             </div>
           </div>

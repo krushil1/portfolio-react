@@ -42,16 +42,12 @@
 
 @media (max-width: 767px) {
   .masonry-grid {
-    column-count: 1; 
+    column-count: 2; 
+    column-gap: 5px;
+    padding: 5px;
   }
-}
 
-.error-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
-  font-size: 24px;
-  color: red;
+  .masonry-item {
+    margin-bottom: 5px;
+  }
 }
