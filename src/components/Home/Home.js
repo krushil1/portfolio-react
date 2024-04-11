@@ -39,7 +39,7 @@ function Home() {
   }, []);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
+    const contactSection = document.getElementById("about");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" });
     }
@@ -73,9 +73,9 @@ function Home() {
             </div>
             <button
               onClick={scrollToContact}
-              className="mt-5 bg-orange font-bold text-white px-8 py-3 rounded-full hover:bg-orange focus:outline-none focus:ring-2 focus:ring-orange focus:ring-opacity-50 transition duration-150 ease-in-out"
+              className="mt-5 bg-orange hover:-translate-y-1 font-semibold text-white px-8 py-3 rounded-full hover:bg-orange focus:outline-none focus:ring-2 focus:ring-orange focus:ring-opacity-50 transition duration-150 ease-in-out"
             >
-              Get In Touch
+              Scroll down <i class='text-xs bx bxs-down-arrow'></i>
             </button>
 
             <div className="mt-6 flex space-x-6 sm:mt-10">
