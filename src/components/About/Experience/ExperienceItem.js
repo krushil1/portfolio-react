@@ -64,7 +64,7 @@ function ExperienceItem() {
           {experienceData.map((experience, index) => (
             <div
               key={index}
-              className="cursor-pointer shadow-effect rounded-lg flex items-center p-2 sm:p-2 transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
+              className="shadow-effect rounded-lg flex items-center p-2 sm:p-2 transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
               onClick={() => openModal(experience)}
             >
               <div className="border-r-2 border-gray">
@@ -101,7 +101,7 @@ function ExperienceItem() {
         {experienceData.map((experience, index) => (
           <div
             key={index}
-            className="cursor-pointer shadow-effect rounded-lg flex items-center p-2 sm:p-2 transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
+            className="shadow-effect rounded-lg flex items-center p-2 sm:p-2 transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
             onClick={() => openModal(experience)}
           >
             <div className="border-r-2 border-gray">

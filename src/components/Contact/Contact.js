@@ -80,8 +80,8 @@ function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="shadow-effect bg-gray-50 text-gray text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
-                  placeholder="John Doe"
+                  className="shadow-effect bg-gray-50 text-gray text-sm rounded block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
+                  placeholder="Krushil Amrutiya"
                   required
                 />
               </div>
@@ -98,7 +98,7 @@ function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="shadow-effect bg-gray-50 text-gray text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
+                  className="shadow-effect bg-gray-50 text-gray text-sm rounded block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
                   placeholder="contact@krushil.dev"
                   required
                 />
@@ -116,7 +116,7 @@ function Contact() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows="6"
-                  className="shadow-effect bg-gray-50 text-gray text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
+                  className="shadow-effect bg-gray-50 text-gray text-sm rounded block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-orange focus:border-orange"
                   placeholder="Drop me a hey...!!!"
                   required
                 ></textarea>
@@ -124,7 +124,7 @@ function Contact() {
               <div className="text-right">
                 <button
                   type="submit"
-                  className="transition ease-in-out delay-150 hover:scale-110 py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-orange sm:w-fit"
+                  className="transition ease-in-out delay-150 hover:scale-110 py-3 px-5 text-sm font-medium text-center text-white rounded bg-orange sm:w-fit"
                 >
                   Send message
                 </button>
