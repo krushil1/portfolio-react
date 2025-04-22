@@ -1,25 +1,23 @@
-import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-
-import Index from "./components";
-import Aviation from "./Pages/Aviation/index"
-import Schedule from "./Pages/Schedule/Schedule";
-import Resume from "./Pages/ResumePage/Resume";
-
+import Portfolio from "./components/Portfolio";
+import AviationPage from "./Pages/Aviation/AviationPage";
+import React from "react";
+import Chat from "./Pages/Chat/Chat.tsx";
+import Resume from "./Pages/ResumePage/Resume.tsx";
 
 function App() {
   return (
-    <Router className="container mx-auto">
+    <Router>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/aviation" element={<Aviation />} />
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/aviation" element={<AviationPage />} />
         <Route path="/resume" element={<Resume />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
