@@ -32,7 +32,7 @@ function Resume() {
   }, []);
 
   return (
-    <div className="h-full-screen flex justify-center items-center">
+    <div className="h-full-screen flex justify-center items-center bg-white">
       <img
         src={resume}
         alt={resumeTitle}

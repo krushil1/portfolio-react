@@ -1,0 +1,191 @@
+/* Pure VSCO-inspired masonry grid styles */
+.masonry-container {
+  margin-bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 4px; /* Add padding to match the spacing on sides */
+  box-sizing: border-box;
+}
+
+/* Classic VSCO item styling */
+.masonry-item {
+  margin-bottom: 8px; /* Double the margin to account for the 4px on each image */
+  background-color: #fff;
+  break-inside: avoid;
+  position: relative;
+  border-radius: 0; /* VSCO has no rounded corners */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 100%;
+  display: inline-block;
+}
+
+/* Image wrapper with VSCO proportions */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  line-height: 0;
+  font-size: 0;
+}
+
+/* VSCO minimal image effects */
+.masonry-item img {
+  transition: transform 0.5s ease;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-hover-effect:hover {
+  transform: scale(1.015); /* Very subtle zoom for authentic VSCO feel */
+}
+
+/* VSCO spacing grid - PERFECTLY EVEN in all directions */
+.my-masonry-grid {
+  display: flex;
+  margin-left: -8px; /* Double the spacing to account for the 4px on each side */
+  width: calc(100% + 8px); /* Adjust width to account for negative margin */
+}
+
+.my-masonry-grid_column {
+  padding-left: 8px; /* Double the spacing to match vertical gaps */
+  background-clip: padding-box;
+}
+
+/* Always visible image title overlay - VSCO style */
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.2) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 1; /* Always visible */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: none; /* No transform needed */
+}
+
+/* No longer needed but kept for compatibility */
+.masonry-item:hover .image-overlay {
+  opacity: 1;
+  transform: none;
+}
+
+.image-overlay h3 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile VSCO styling - EXACTLY THE SAME SPACING as desktop */
+@media (max-width: 767px) {
+  .masonry-container {
+    padding: 0 4px; /* Consistent padding */
+    margin: 0;
+  }
+
+  .my-masonry-grid {
+    margin-left: -8px; /* Consistent with desktop */
+  }
+
+  .my-masonry-grid_column {
+    padding-left: 8px; /* Consistent with desktop */
+  }
+
+  .masonry-item {
+    margin-bottom: 8px; /* Consistent with desktop */
+  }
+
+  /* No height restrictions to allow natural masonry */
+  .image-wrapper {
+    max-height: none;
+    height: auto;
+  }
+
+  .masonry-item img {
+    height: auto;
+    max-height: none;
+    min-height: 0;
+  }
+
+  /* Slightly visible overlay by default on mobile */
+  .image-overlay {
+    padding: 8px;
+    opacity: 1; /* Always visible on mobile too */
+  }
+
+  .image-overlay h3 {
+    font-size: 11px;
+  }
+}
+
+/* Critical fix for mobile Safari */
+@supports (-webkit-touch-callout: none) {
+  .my-masonry-grid {
+    display: flex !important;
+  }
+
+  .my-masonry-grid_column {
+    flex: 1 0 auto !important;
+  }
+
+  .masonry-item {
+    width: 100% !important;
+  }
+}
+
+/* Desktop styles - with SAME SPACING as mobile */
+@media (min-width: 768px) {
+  .masonry-container {
+    padding: 0 4px; /* Consistent padding */
+    margin: 0;
+  }
+
+  .my-masonry-grid {
+    margin-left: -8px; /* Consistent with mobile */
+  }
+
+  .my-masonry-grid_column {
+    padding-left: 8px; /* Consistent with mobile */
+  }
+
+  .masonry-item {
+    margin-bottom: 8px; /* Consistent with mobile */
+  }
+
+  .image-overlay h3 {
+    font-size: 12px;
+  }
+}
+
+/* Minimal animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.masonry-container {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Loading state styling */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
