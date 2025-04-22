@@ -52,7 +52,6 @@ export default function AviationPage() {
   return (
     <div className="min-h-screen text-darkgray gradient-section">
       <div className="relative z-10">
-        {/* Top navigation bar with return home button */}
         <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
           <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
             <h2 className="text-xl font-medium text-darkgray">Aviation</h2>

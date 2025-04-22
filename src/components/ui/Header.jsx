@@ -8,7 +8,6 @@ export function Header({ className, children, ...props }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -18,7 +17,6 @@ export function Header({ className, children, ...props }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when clicking outside or scrolling
   useEffect(() => {
     const handleOutsideClick = () => {
       if (isMenuOpen) setIsMenuOpen(false);
@@ -33,7 +31,6 @@ export function Header({ className, children, ...props }) {
     };
   }, [isMenuOpen]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -78,7 +75,6 @@ export function Header({ className, children, ...props }) {
           Krush<span className="text-orange">i</span>l
         </a>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
             <a
@@ -97,7 +93,6 @@ export function Header({ className, children, ...props }) {
           ))}
         </nav>
 
-        {/* Mobile Menu Toggle Button */}
         <button
           className="md:hidden text-darkgray focus:outline-none p-2 z-50 relative"
           onClick={toggleMenu}
@@ -107,7 +102,6 @@ export function Header({ className, children, ...props }) {
         </button>
       </div>
 
-      {/* Mobile Menu Panel - Full Screen */}
       <div
         className={cn(
           "fixed inset-0 bg-white z-40 transition-all duration-300 md:hidden flex flex-col items-center justify-center",

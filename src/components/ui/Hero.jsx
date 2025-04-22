@@ -9,10 +9,8 @@ export function Hero({ className, ...props }) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // First try to find any document with the description field
     console.log("Fetching hero description from Sanity...");
 
-    // Try multiple possible document types and field names
     const possibleQueries = [
       `*[_type == "Home_About_Me"] { Home_About_Me_Text }`,
       `*[_type == "home_about_me"] { Home_About_Me_Text }`,
@@ -21,7 +19,6 @@ export function Hero({ className, ...props }) {
       `*[_type == "Home_Text"] { Home_Text }`,
     ];
 
-    // Try all possible queries
     Promise.all(
       possibleQueries.map((query) =>
         sanityClient.fetch(query).catch((err) => {
@@ -33,13 +30,11 @@ export function Hero({ className, ...props }) {
       .then((results) => {
         console.log("Sanity query results:", results);
 
-        // Find the first successful result with data
         for (let i = 0; i < results.length; i++) {
           if (results[i] && results[i].length > 0) {
             const data = results[i][0];
             console.log(`Found data with query ${i}:`, data);
 
-            // Extract the text field (whatever it's called)
             const textField = Object.values(data)[0];
             if (textField) {
               console.log("Using description:", textField);
@@ -50,7 +45,6 @@ export function Hero({ className, ...props }) {
           }
         }
 
-        // If we reach here, we couldn't find any data
         console.log("No hero description found in any query");
         setError(true);
         setIsLoading(false);

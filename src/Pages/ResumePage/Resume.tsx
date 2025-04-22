@@ -4,7 +4,6 @@ import client from "../../client";
 function Resume() {
   const [resume, setResume] = useState("");
   const [resumeTitle, setResumeTitle] = useState("");
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     client
@@ -22,12 +21,10 @@ function Resume() {
         if (data.length > 0) {
           setResume(data[0].image.asset.url);
           setResumeTitle(data[0].Title);
-        } else {
-          setError(true);
         }
       })
       .catch(() => {
-        setError(true);
+        console.error("Failed to fetch resume data");
       });
   }, []);
 

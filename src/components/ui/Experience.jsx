@@ -28,20 +28,16 @@ export function Experience({ className, ...props }) {
         }`
       )
       .then((data) => {
-        // Sort experiences to show current position first
         const sortedData = [...data].sort((a, b) => {
-          // First by is_current (if available)
           if (a.is_current && !b.is_current) return -1;
           if (!a.is_current && b.is_current) return 1;
 
-          // Then try to determine by date containing "Present"
           const aHasPresent = a.Date && a.Date.includes("Present");
           const bHasPresent = b.Date && b.Date.includes("Present");
 
           if (aHasPresent && !bHasPresent) return -1;
           if (!aHasPresent && bHasPresent) return 1;
 
-          // Default to original order
           return 0;
         });
 
@@ -58,18 +54,15 @@ export function Experience({ className, ...props }) {
       });
   }, []);
 
-  // Function to check if a role is current
   const isCurrentRole = (exp) => {
     return exp.is_current || (exp.Date && exp.Date.includes("Present"));
   };
 
-  // Function to truncate text
   const truncateText = (text, maxLength = 100) => {
     if (!text || text.length <= maxLength) return text;
     return text.substring(0, maxLength) + "...";
   };
 
-  // Toggle description expand/collapse
   const toggleExpanded = (index) => {
     setExpandedIds((prev) => {
       if (prev.includes(index)) {
@@ -80,7 +73,6 @@ export function Experience({ className, ...props }) {
     });
   };
 
-  // Check if an experience is expanded
   const isExpanded = (index) => {
     return expandedIds.includes(index);
   };
@@ -113,7 +105,6 @@ export function Experience({ className, ...props }) {
             >
               <div className="p-4">
                 <div className="flex items-start gap-3">
-                  {/* Logo */}
                   <div className="flex-shrink-0">
                     <div className="h-14 w-14 bg-white rounded-md border border-border flex items-center justify-center overflow-hidden">
                       {exp.image && (
@@ -126,7 +117,6 @@ export function Experience({ className, ...props }) {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap justify-between items-start mb-1">
                       <div>
@@ -157,7 +147,6 @@ export function Experience({ className, ...props }) {
                       </span>
                     </div>
 
-                    {/* Description */}
                     {exp.Description && (
                       <div className="mt-2">
                         {exp.Description.length > 100 ? (
@@ -182,7 +171,6 @@ export function Experience({ className, ...props }) {
                       </div>
                     )}
 
-                    {/* Technologies */}
                     {exp.Icons_For_Tech_Used &&
                       exp.Icons_For_Tech_Used.length > 0 && (
                         <div className="flex flex-wrap gap-2 mt-2">

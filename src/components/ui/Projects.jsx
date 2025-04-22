@@ -134,7 +134,6 @@ export function Projects({ className, ...props }) {
             onClick={closeModal}
           ></div>
           <div className="bg-white rounded-lg shadow-lg relative z-10 max-w-md w-full overflow-hidden">
-            {/* Modal Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <h3 className="text-lg font-medium text-orange">
                 {currentProject.Project_Name}
@@ -148,7 +147,6 @@ export function Projects({ className, ...props }) {
               </button>
             </div>
 
-            {/* Modal Content */}
             <div className="p-4 space-y-4">
               <p className="text-sm text-gray leading-relaxed">
                 {currentProject.Description}

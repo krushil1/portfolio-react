@@ -7,9 +7,8 @@ import {
 import Portfolio from "./components/Portfolio";
 import AviationPage from "./Pages/Aviation/AviationPage";
 import React from "react";
-import Chat from "./Pages/Chat/Chat";
-
-import Resume from "./Pages/ResumePage/Resume";
+import Chat from "./Pages/Chat/Chat.tsx";
+import Resume from "./Pages/ResumePage/Resume.tsx";
 
 function App() {
   return (

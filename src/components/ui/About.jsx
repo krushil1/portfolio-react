@@ -30,7 +30,6 @@ export function About({ className, ...props }) {
       });
   }, []);
 
-  // Split the about text into paragraphs
   const aboutParagraphs = aboutText
     ? aboutText.split("\n\n").filter((p) => p.trim())
     : [];
