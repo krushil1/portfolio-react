@@ -23,7 +23,7 @@ export function Contact({ className, ...props }) {
 
         <div className="flex items-center space-x-6 sm:space-x-8 mb-4">
           <a
-            href="mailto:connect@krushil.dev"
+            href="mailto:connect@krushil.com"
             className="text-darkgray hover:text-orange transition-colors"
             aria-label="Email"
           >
