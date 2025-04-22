@@ -36,7 +36,20 @@ export function Projects({ className, ...props }) {
       });
   }, []);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showModal]);
+
   const handleViewProject = (project) => {
+    console.log("Opening modal for project:", project.Project_Name);
     setCurrentProject(project);
     setShowModal(true);
   };
@@ -50,12 +63,14 @@ export function Projects({ className, ...props }) {
     <section
       id="projects"
       className={cn(
-        "w-full max-w-5xl mx-auto px-4 py-20 mt-16 md:mt-20",
+        "w-full max-w-5xl mx-auto px-3 sm:px-4 py-12 sm:py-16 md:py-24 lg:py-32 mt-10 sm:mt-16 md:mt-20 lg:mt-24",
         className
       )}
       {...props}
     >
-      <h2 className="text-2xl font-medium mb-10 text-orange">Projects 🚀</h2>
+      <h2 className="text-xl sm:text-2xl font-medium mb-6 sm:mb-8 md:mb-10 lg:mb-14 text-orange">
+        Projects
+      </h2>
       {isLoading ? (
         <div className="flex justify-center py-6">
           <p className="text-gray">Loading projects...</p>
@@ -67,18 +82,28 @@ export function Projects({ className, ...props }) {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {projects.map((project, index) => (
             <div
               key={index}
               className={cn(
-                "group bg-white rounded-lg overflow-hidden transition-all duration-200 card-highlight",
-                "border border-border hover:border-orange",
-                "shadow-sm hover:shadow-md"
+                "group bg-white rounded-lg overflow-hidden transition-all duration-200 card-highlight cursor-pointer",
+                "border border-border hover:border-orange active:border-orange",
+                "shadow-sm hover:shadow-md active:shadow-md"
               )}
+              onClick={() => handleViewProject(project)}
+              role="button"
+              tabIndex={0}
+              aria-label={`View details for ${project.Project_Name}`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleViewProject(project);
+                }
+              }}
             >
-              <div className="p-5">
-                <div className="flex justify-between items-start mb-3">
+              <div className="p-4 sm:p-5">
+                <div className="flex justify-between items-start mb-2 sm:mb-3">
                   <h3 className="text-base font-medium text-orange">
                     {project.Project_Name}
                   </h3>
@@ -88,15 +113,17 @@ export function Projects({ className, ...props }) {
                       href={project.Project_Link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray hover:text-orange transition-colors text-xl"
+                      className="text-gray hover:text-orange transition-colors text-xl z-10 p-1"
                       aria-label="View on GitHub"
+                      onClick={(e) => e.stopPropagation()}
+                      onKeyDown={(e) => e.stopPropagation()}
                     >
                       <i className="bx bxl-github"></i>
                     </a>
                   )}
                 </div>
 
-                <p className="text-sm text-gray mb-3 line-clamp-2">
+                <p className="text-xs sm:text-sm text-gray mb-2 sm:mb-3 line-clamp-2">
                   {project.Sub_Description}
                 </p>
 
@@ -106,7 +133,7 @@ export function Projects({ className, ...props }) {
                       {project.Icons_For_Tech_Used.map((tech, i) => (
                         <div
                           key={i}
-                          className="text-orange text-xl"
+                          className="text-orange text-lg sm:text-xl"
                           dangerouslySetInnerHTML={{ __html: tech }}
                           title="Technology used"
                         />
@@ -114,34 +141,51 @@ export function Projects({ className, ...props }) {
                     </div>
                   )}
 
-                <button
-                  onClick={() => handleViewProject(project)}
-                  className="mt-4 text-sm text-gray hover:text-orange transition-colors inline-flex items-center"
-                >
+                <div className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray hover:text-orange transition-colors inline-flex items-center font-medium">
                   Details{" "}
                   <i className="bx bx-chevron-right ml-1 text-orange"></i>
-                </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+      {showModal && currentProject && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-[100] p-4 overflow-y-auto overscroll-contain"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+          style={{
+            animation: "fadeIn 0.2s ease-out forwards",
+          }}
+        >
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm"
             onClick={closeModal}
+            style={{
+              animation: "fadeIn 0.2s ease-out forwards",
+            }}
           ></div>
-          <div className="bg-white rounded-lg shadow-lg relative z-10 max-w-md w-full overflow-hidden">
+          <div
+            className="bg-white rounded-lg shadow-xl relative z-[101] max-w-md w-full overflow-hidden mx-auto my-4"
+            style={{
+              animation: "scaleIn 0.2s ease-out forwards",
+            }}
+          >
             <div className="flex items-center justify-between p-4 border-b border-border">
-              <h3 className="text-lg font-medium text-orange">
+              <h3
+                id="project-modal-title"
+                className="text-lg font-medium text-orange"
+              >
                 {currentProject.Project_Name}
               </h3>
               <button
+                type="button"
                 onClick={closeModal}
-                className="text-gray hover:text-orange transition-colors text-xl"
-                aria-label="Close"
+                className="text-gray hover:text-orange transition-colors text-xl p-2 rounded-full hover:bg-gray-100"
+                aria-label="Close modal"
               >
                 <i className="bx bx-x"></i>
               </button>
@@ -187,7 +231,28 @@ export function Projects({ className, ...props }) {
         </div>
       )}
 
-      <Separator className="my-24 bg-border" />
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.95);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
+
+      <Separator className="my-12 sm:my-16 md:my-24 lg:my-32 bg-gray/30 h-[2px]" />
     </section>
   );
 }

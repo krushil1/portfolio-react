@@ -59,41 +59,45 @@ export function Hero({ className, ...props }) {
   return (
     <section
       className={cn(
-        "flex flex-col items-start justify-center min-h-[80vh] w-full max-w-5xl mx-auto px-4 pt-36 md:pt-40 lg:pt-44",
+        "flex flex-col items-start justify-center min-h-[95vh] sm:min-h-[90vh] w-full max-w-5xl mx-auto px-3 sm:px-4 pt-44 sm:pt-52 md:pt-64 lg:pt-72",
         className
       )}
       {...props}
     >
-      <div className="space-y-6 max-w-2xl">
-        <h1 className="text-4xl font-medium tracking-tight text-darkgray">
+      <div className="space-y-4 sm:space-y-6 max-w-2xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-gray">
           Hey, I'm Krush<span className="text-orange">i</span>l 👋
         </h1>
         {isLoading ? (
-          <p className="text-lg text-gray leading-relaxed">Loading...</p>
+          <p className="text-base sm:text-lg text-gray leading-relaxed">
+            Loading...
+          </p>
         ) : error ? (
-          <p className="text-lg text-gray leading-relaxed">
+          <p className="text-base sm:text-lg text-gray leading-relaxed">
             I'm a developer focused on building minimalist, functional, and
             accessible digital experiences.
           </p>
         ) : (
-          <p className="text-lg text-gray leading-relaxed">{description}</p>
+          <p className="text-base sm:text-lg text-gray leading-relaxed">
+            {description}
+          </p>
         )}
-        <div className="flex items-center space-x-4 pt-2">
+        <div className="flex items-center space-x-3 sm:space-x-4 pt-2 sm:pt-4">
           <a
             href="#contact"
-            className="px-4 py-2 bg-orange text-white rounded-md text-sm transition-colors hover:opacity-90"
+            className="px-3 sm:px-4 py-1.5 sm:py-2 bg-orange text-white rounded-md text-sm transition-colors hover:opacity-90"
           >
             Get in touch
           </a>
           <a
             href="#projects"
-            className="px-4 py-2 bg-white text-gray rounded-md text-sm transition-colors hover:bg-muted"
+            className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-gray rounded-md text-sm transition-colors hover:bg-muted"
           >
             View projects
           </a>
         </div>
       </div>
-      <Separator className="my-24 bg-border" />
+      <Separator className="my-16 sm:my-20 md:my-24 lg:my-32 bg-gray/30 h-[2px]" />
     </section>
   );
 }
