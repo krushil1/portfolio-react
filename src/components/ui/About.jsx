@@ -38,13 +38,13 @@ export function About({ className, ...props }) {
     <section
       id="about"
       className={cn(
-        "w-full max-w-5xl mx-auto px-3 sm:px-4 py-10 sm:py-16 md:py-20 mt-10 sm:mt-12 md:mt-16",
+        "w-full max-w-5xl mx-auto px-3 sm:px-4 py-10 sm:py-16 md:py-24 lg:py-32 mt-10 sm:mt-12 md:mt-16 lg:mt-20",
         className
       )}
       {...props}
     >
-      <h2 className="text-xl sm:text-2xl font-medium mb-5 sm:mb-6 md:mb-8 text-orange">
-        About Me 🧠
+      <h2 className="text-xl sm:text-2xl font-medium mb-5 sm:mb-6 md:mb-10 lg:mb-12 text-orange">
+        About Me
       </h2>
 
       {isLoading ? (
@@ -53,10 +53,6 @@ export function About({ className, ...props }) {
         <p className="text-orange">About me data currently unavailable.</p>
       ) : (
         <div className="max-w-3xl">
-          <div className="text-sm sm:text-md text-gray mb-4 sm:mb-6">
-            <i className="bx bxs-map-pin text-orange mr-1"></i> Pennsylvania
-          </div>
-
           <div className="space-y-3 sm:space-y-4 md:space-y-5">
             {aboutParagraphs.map((paragraph, index) => (
               <p
@@ -80,7 +76,7 @@ export function About({ className, ...props }) {
         </div>
       )}
 
-      <Separator className="my-12 sm:my-16 md:my-24 bg-border" />
+      <Separator className="my-12 sm:my-16 md:my-24 lg:my-32 bg-gray/30 h-[2px]" />
     </section>
   );
 }
