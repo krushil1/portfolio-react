@@ -38,12 +38,14 @@ export function About({ className, ...props }) {
     <section
       id="about"
       className={cn(
-        "w-full max-w-5xl mx-auto px-4 py-20 mt-16 md:mt-20",
+        "w-full max-w-5xl mx-auto px-3 sm:px-4 py-10 sm:py-16 md:py-20 mt-10 sm:mt-12 md:mt-16",
         className
       )}
       {...props}
     >
-      <h2 className="text-2xl font-medium mb-8 text-orange">About Me 🧠</h2>
+      <h2 className="text-xl sm:text-2xl font-medium mb-5 sm:mb-6 md:mb-8 text-orange">
+        About Me 🧠
+      </h2>
 
       {isLoading ? (
         <p className="text-gray">Loading...</p>
@@ -51,31 +53,34 @@ export function About({ className, ...props }) {
         <p className="text-orange">About me data currently unavailable.</p>
       ) : (
         <div className="max-w-3xl">
-          <div className="text-md text-gray mb-6">
+          <div className="text-sm sm:text-md text-gray mb-4 sm:mb-6">
             <i className="bx bxs-map-pin text-orange mr-1"></i> Pennsylvania
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-3 sm:space-y-4 md:space-y-5">
             {aboutParagraphs.map((paragraph, index) => (
-              <p key={index} className="text-gray leading-relaxed">
+              <p
+                key={index}
+                className="text-sm sm:text-base text-gray leading-relaxed"
+              >
                 {paragraph}
               </p>
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-6 sm:mt-8 md:mt-10">
             <a
               href="/aviation"
-              className="inline-flex items-center px-4 py-2 border border-orange text-orange hover:bg-orange hover:text-white rounded-md transition-colors"
+              className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 border border-orange text-orange hover:bg-orange hover:text-white rounded-md transition-colors text-sm"
             >
-              <i className="bx bxs-plane-take-off mr-2"></i>
+              <i className="bx bxs-plane-take-off mr-1.5 sm:mr-2"></i>
               <span>View aviation photography</span>
             </a>
           </div>
         </div>
       )}
 
-      <Separator className="my-24 bg-border" />
+      <Separator className="my-12 sm:my-16 md:my-24 bg-border" />
     </section>
   );
 }

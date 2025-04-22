@@ -81,19 +81,21 @@ export function Experience({ className, ...props }) {
     <section
       id="experience"
       className={cn(
-        "w-full max-w-5xl mx-auto px-4 py-20 mt-16 md:mt-20",
+        "w-full max-w-5xl mx-auto px-2 sm:px-3 md:px-4 py-8 sm:py-10 md:py-20 mt-8 sm:mt-10 md:mt-20",
         className
       )}
       {...props}
     >
-      <h2 className="text-2xl font-medium mb-8 text-orange">Experience 💼</h2>
+      <h2 className="text-xl sm:text-2xl font-medium mb-3 sm:mb-4 md:mb-8 text-orange">
+        Experience 💼
+      </h2>
 
       {isLoading ? (
         <p className="text-gray">Loading experiences...</p>
       ) : error ? (
         <p className="text-orange">Experience data currently unavailable.</p>
       ) : (
-        <div className="space-y-5">
+        <div className="space-y-2 sm:space-y-3 md:space-y-5">
           {experiences.map((exp, index) => (
             <div
               key={index}
@@ -103,9 +105,9 @@ export function Experience({ className, ...props }) {
                 "shadow-sm hover:shadow-md"
               )}
             >
-              <div className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0">
+              <div className="p-2 sm:p-2.5 md:p-4">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-2 md:gap-3">
+                  <div className="flex-shrink-0 mb-1 sm:mb-0">
                     <div className="h-14 w-14 bg-white rounded-md border border-border flex items-center justify-center overflow-hidden">
                       {exp.image && (
                         <img
@@ -118,53 +120,59 @@ export function Experience({ className, ...props }) {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap justify-between items-start mb-1">
-                      <div>
-                        <h3 className="text-base font-medium text-orange">
-                          {exp.Company_Name}
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between sm:items-start gap-0.5 sm:gap-1 mb-0.5 sm:mb-1">
+                      <div className="mb-0 sm:mb-0">
+                        <div className="flex items-center flex-wrap gap-0.5 sm:gap-1">
+                          <h3 className="text-sm sm:text-base font-medium text-orange">
+                            {exp.Company_Name}
+                          </h3>
                           {isCurrentRole(exp) && (
-                            <span className="ml-2 inline-block px-2 py-0.5 text-xs bg-orange/10 text-orange rounded-sm font-medium">
+                            <span className="inline-block px-1 sm:px-1.5 py-0.5 text-xs bg-orange/10 text-orange rounded-sm font-medium">
                               Current
                             </span>
                           )}
-                        </h3>
+                        </div>
 
-                        <div className="flex items-center text-sm text-gray">
+                        <div className="flex flex-wrap items-center text-xs sm:text-sm text-gray mt-0.5">
                           <span className="font-medium text-darkgray">
                             {exp.Role}
                           </span>
                           {exp.Location && (
-                            <span className="ml-2 inline-flex items-center">
-                              • <span className="text-xs mx-1">📍</span>
+                            <span className="ml-1 sm:ml-1.5 md:ml-2 inline-flex items-center flex-wrap">
+                              •{" "}
+                              <span className="text-xs mx-0.5 sm:mx-1">📍</span>
                               {exp.Location}
                             </span>
                           )}
                         </div>
                       </div>
 
-                      <span className="text-xs text-gray px-2 py-1 bg-accent rounded-md">
+                      <span className="text-xs text-gray px-1 sm:px-1.5 py-0.5 bg-accent rounded-md self-start">
                         {exp.Date}
                       </span>
                     </div>
 
                     {exp.Description && (
-                      <div className="mt-2">
+                      <div className="mt-1 sm:mt-1.5 md:mt-2">
                         {exp.Description.length > 100 ? (
                           <>
-                            <p className="text-sm text-gray leading-relaxed">
+                            <p className="text-xs sm:text-sm text-gray leading-relaxed">
                               {isExpanded(index)
                                 ? exp.Description
                                 : truncateText(exp.Description, 100)}
                             </p>
                             <button
-                              onClick={() => toggleExpanded(index)}
-                              className="text-orange text-sm hover:underline focus:outline-none mt-1 inline-block font-medium"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleExpanded(index);
+                              }}
+                              className="text-orange text-xs sm:text-sm hover:underline focus:outline-none mt-0.5 inline-block font-medium"
                             >
                               {isExpanded(index) ? "Show less" : "Read more"}
                             </button>
                           </>
                         ) : (
-                          <p className="text-sm text-gray leading-relaxed">
+                          <p className="text-xs sm:text-sm text-gray leading-relaxed">
                             {exp.Description}
                           </p>
                         )}
@@ -173,11 +181,11 @@ export function Experience({ className, ...props }) {
 
                     {exp.Icons_For_Tech_Used &&
                       exp.Icons_For_Tech_Used.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-2">
+                        <div className="flex flex-wrap gap-1 sm:gap-1.5 md:gap-2 mt-1.5 sm:mt-2 md:mt-3">
                           {exp.Icons_For_Tech_Used.map((tech, i) => (
                             <div
                               key={i}
-                              className="text-orange text-xl transform transition-transform hover:scale-110"
+                              className="text-orange text-base sm:text-lg md:text-xl transform transition-transform hover:scale-110"
                               dangerouslySetInnerHTML={{ __html: tech }}
                               title="Technology used"
                             />
@@ -192,7 +200,7 @@ export function Experience({ className, ...props }) {
         </div>
       )}
 
-      <Separator className="my-24 bg-border" />
+      <Separator className="my-8 sm:my-12 md:my-24 bg-border" />
     </section>
   );
 }
