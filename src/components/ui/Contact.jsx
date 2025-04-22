@@ -25,7 +25,7 @@ export function Contact({ className, ...props }) {
             className="text-darkgray hover:text-orange transition-colors"
             aria-label="Email"
           >
-            <i className="bx bx-envelope text-2xl"></i>
+            <i className="bx bxs-envelope text-2xl"></i>
           </a>
 
           <a

@@ -7,6 +7,8 @@ export function Header({ className, children, ...props }) {
   const currentPath = location.pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const headerRef = React.useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,13 @@ export function Header({ className, children, ...props }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Update header height on mount and when scrolled state changes
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, [scrolled]);
 
   useEffect(() => {
     const handleOutsideClick = () => {
@@ -61,8 +70,35 @@ export function Header({ className, children, ...props }) {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+
+    // Only apply custom scrolling for hash links
+    if (href.startsWith("#")) {
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        // Small delay to ensure menu is closed first
+        setTimeout(() => {
+          const offsetPosition = targetElement.offsetTop - headerHeight - 16; // Extra padding
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }, 10);
+      }
+    } else {
+      // For non-hash links, navigate normally
+      window.location.href = href;
+    }
+  };
+
   return (
     <header
+      ref={headerRef}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
         scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-transparent",
@@ -123,7 +159,7 @@ export function Header({ className, children, ...props }) {
                   ? isActive(link.href)
                   : isActive(link.href)) && "text-orange"
               )}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}
             </a>
